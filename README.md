@@ -2,7 +2,7 @@
 
 
 ## Level 0
----
+
 ### Create database named 'employees_demo'.
 Query:
 ```sh
