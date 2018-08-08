@@ -79,3 +79,39 @@ INSERT INTO titles VALUES
 (4, 'Senior Staff', '2014-02-02'),
 (5, 'Staff', '2014-02-02');
 ```
+
+## Level 2
+
+### Use ALTER TABLE table statement to add new column named 'to_date' inside `titles` table default value '9999-01-01'.
+Query:
+```sh
+ALTER TABLE titles ADD COLUMN to_date DATE;
+ALTER TABLE titles ALTER to_date SET DEFAULT '9999-01-01';
+UPDATE titles SET to_date = '9999-01-01';
+```
+
+### Use ALTER TABLE statement to add 'from_date' column as primary key.
+Query:
+```sh
+ALTER TABLE titles DROP PRIMARY KEY;
+ALTER TABLE titles ADD CONSTRAINT titles_pk PRIMARY KEY (emp_no, title, from_date);
+```
+
+
+## Level 3
+### Use the UPDATE statement to update data like specified table content below.
+```
++--------+-----------------+------------+------------+
+| emp_no | title           | from_date  | to_date    |
++--------+-----------------+------------+------------+
+|      1 | Senior Engineer | 2004-02-02 | 9999-01-01 |
+|      2 | Staff           | 2015-02-02 | 9999-01-01 |
+|      3 | Senior Engineer | 2015-02-02 | 9999-01-01 |
+|      4 | Senior Staff    | 2014-02-02 | 9999-01-01 |
+|      5 | Staff           | 2014-02-02 | 2014-02-22 | # <- update to_date where emp_no = 5
++--------+-----------------+------------+------------+
+```
+Query:
+```sh
+UPDATE titles SET to_date = '2014-02-02' WHERE emp_no = 5 AND title = 'Staff';
+```
